@@ -10,4 +10,14 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.post('/', function(req, res, next) {
+  var course = new Course({
+    name: req.body.name
+  });
+  course.save(function(err){
+    if (err) res.send('error ' + err);
+    else res.redirect('/courses');
+  })
+});
+
 module.exports = router;
