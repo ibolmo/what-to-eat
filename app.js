@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 const MONGO_PASS = process.env['MONGO_DB_PASS'];
 const MONGO_HOST = process.env['$OPENSHIFT_MONGODB_DB_HOST'];
 const MONGO_PORT = process.env['$OPENSHIFT_MONGODB_DB_PORT'];
-mongoose.connect(`mongodb://admin:${MONGO_PASS}@${MONGO_HOST}:${MONGO_PORT}/nodejs`);
+mongoose.connect('mongodb://admin:' + MONGO_PASS + '@' + MONGO_HOST + ':' + MONGO_PORT + '/nodejs');
 
 var routes = require('./routes/index');
 var courses = require('./routes/courses');
