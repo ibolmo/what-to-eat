@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1 Courses List
+  ul
+    each course in courses
+      li=course
+    
+  form(action="", method="post")
+    input(type="text", name="name")
+    br
+    input(type="submit")
