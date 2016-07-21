@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "express-livereload": "0.0.24",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0"
   }
 }
