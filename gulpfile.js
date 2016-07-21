@@ -11,9 +11,14 @@ gulp.task('js', function(){
   gulp.src('public/**/*.js').pipe(livereload());
 });
 
+gulp.task('jade', function(){
+  gulp.src('views/**/*.jade').pipe(livereload());
+});
+
 gulp.task('watch', function(){
   gulp.watch('public/**/*.css', ['css']);
   gulp.watch('public/**/*.js', ['js']);
+  gulp.watch('views/**/*.jade', ['jade']);
 });
 
 gulp.task('start', function () {
