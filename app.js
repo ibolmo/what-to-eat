@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var livereload = require('express-livereload');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/boot');
@@ -13,6 +14,9 @@ var users = require('./routes/users');
 var courses = require('./routes/courses');
 
 var app = express();
+livereload(app, {
+  watchDir: '.'
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
