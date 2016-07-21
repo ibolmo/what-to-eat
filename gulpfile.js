@@ -3,6 +3,19 @@ var nodemon = require('gulp-nodemon');
 var livereload = require('gulp-livereload');
 var wait = require('gulp-wait');
 
+gulp.task('css', function(){
+  gulp.src('public/**/*.css').pipe(livereload());
+});
+
+gulp.task('js', function(){
+  gulp.src('public/**/*.js').pipe(livereload());
+});
+
+gulp.task('watch', function(){
+  gulp.watch('public/**/*.css', ['css']);
+  gulp.watch('public/**/*.js', ['js']);
+});
+
 gulp.task('start', function () {
   livereload.listen();
 
@@ -18,4 +31,4 @@ gulp.task('start', function () {
 
 });
 
-gulp.task('default', ['start']);
+gulp.task('default', ['start', 'watch']);
