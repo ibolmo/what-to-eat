@@ -32,9 +32,9 @@
     "gulp": "^3.9.1",
     "gulp-livereload": "^3.8.1",
     "gulp-nodemon": "^2.1.0",
-    "gulp-wait": "0.0.2"
+    "gulp-wait": "0.0.2",
+    "supertest": "^1.2.0"
   },
   "bundleDependencies": [],
-  "private": true,
   "main": "server.js"
 }
