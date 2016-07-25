@@ -17,11 +17,13 @@ if (MONGO_HOST) {
   mongoose.connect('mongodb://localhost/whattoeat');
 }
 
+app = express();
+
+app.set('DEBUG', false);
+app.set('GMAPS_KEY', 'AIzaSyCQDgYLniH8zXKfbBwZRyYo_Eczx2xo0eY');
+
 var routes = require('./routes/index');
 var restaurants = require('./routes/restaurants');
-
-
-var app = express();
 
 var sess = {
   secret: 'keyboard cat',
