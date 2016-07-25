@@ -1,4 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Helvetica;
+}
 
 .hidden {
   display: none;
+}
+
+#nearby li {
+  list-style: none;
+}
+
+#nearby .restaurant {
+  width: 300px;
+  height: 568px;
+  position: absolute;
+  background: black;
+  background-size: cover;
+  background-position: center center;
+}
+
+#nearby .title {
+  position: absolute;
+  height: 50px;
+  bottom: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  color: white;
+  font-weight: medium;
+  letter-spacing: 1px;
+  vertical-align: middle;
+}
+
+#nearby .name {
+  padding-left: 10px;
+  padding-bottom: 50px;
+}
+
+#nearby .logo {
+  height: 75%;
+  padding-left: 10px;
+}
+
+.v-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.col {
+  float: left;
+  width: 300px;
+  height: 568px;
+  margin: 5px;
+  background: grey;
+  position: relative;
+  z-index: 0;
+}
+
+.pending {
+  z-index: 100;
 }

@@ -3,6 +3,25 @@ extends layout
 block content
   h1= title
   
-  ul
-    - each restaurant in restaurants
-        div= restaurant.name
+  script(type='text/javascript', src='js/swing.js')
+  script(type='text/javascript', src='js/nearby.js')
+  
+  #nearby
+    .col.ignore-zone
+    .col.pending
+      ul
+        li.choose 
+          form.hidden(action="/choose")
+            select(name="selection", multiple="true")
+              - each restaurant in restaurants
+                  option(value=restaurant.placeid)=restaurant.name
+        - each restaurant in restaurants
+          li.restaurant(id=restaurant.placeid, style="background-image: url(#{restaurant.images[Math.floor(Math.random()*restaurant.images.length)]})")
+            .title
+              img.logo.v-center(src="#{restaurant.logo}")
+              span.name=restaurant.name
+    .col.accepted-zone
+    
+    br(style="clear:both")
+    
+    

@@ -20,7 +20,7 @@ if (MONGO_HOST) {
 app = express();
 
 app.set('DEBUG', false);
-app.set('GMAPS_KEY', 'AIzaSyCQDgYLniH8zXKfbBwZRyYo_Eczx2xo0eY');
+app.set('GMAPS_KEY', 'AIzaSyAoOkmoofV8oEwSti3VU8zLCs-Tx1L2Lcg');
 
 var routes = require('./routes/index');
 var restaurants = require('./routes/restaurants');

@@ -6,13 +6,4 @@ router.get('/:placeid', function(req, res, next) {
   res.render('restaurant/profile', { restaurant: restaurant });
 });
 
-router.post('/:placeid/ignore', function(req, res, next) {
-  res.redirect('/');
-});
-
-router.post('/:placeid/consider', function(req, res, next) {
-  res.redirect('/');
-});
-
-
 module.exports = router;
