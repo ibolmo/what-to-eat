@@ -113,7 +113,7 @@ Invite friends
 
   Review: https://github.com/robert52/simple-geolocation
 
-# Model
+# Model √
 
 Restaurant:
   placeid:
