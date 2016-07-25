@@ -21,7 +21,7 @@ router.post('/gps', function(req, res,next) {
     'location=' + req.body.latitude + ',' + req.body.longitude,
     'radius=8000',
     'opennow',
-    'types=meal_takeaway%7Ccafe%7Crestaurant'
+    'types=meal_takeaway|cafe|restaurant'
   ].join('&');
 
   request(url, function (error, response, body) {
@@ -42,21 +42,32 @@ router.post('/gps', function(req, res,next) {
         return restaurant;
       });
 
-      // bulk save all
+      req.session.results = restaurants.map(function(restaurant){
+        return restaurant.placeid;
+      });
+
       res.redirect('/nearby');
     } else {
       res.send('error ' + error);
     }
   });
-  // return restaurant models
+
 });
 
-router.get('/nearby', function(req, res,next) {
-  var restaurants = [];
-
-  res.render('nearby', {
-    title: 'Restaurants open nearby',
-    restaurants: restaurants
+router.get('/nearby', function(req, res, next) {
+  Restaurant.find({
+    placeid: {
+      $in: req.session.results
+    }
+  }, function(err, restaurants){
+    var unique = {};
+    res.render('nearby', {
+      title: 'Restaurants open nearby',
+      restaurants: restaurants.filter(function(restaurant){
+        if (unique[restaurant.name]) return false;
+        return unique[restaurant.name] = true;
+      })
+    });
   });
 });
 

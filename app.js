@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session')
 
 const MONGO_PASS = process.env.MONGO_DB_PASS;
 const MONGO_HOST = process.env.OPENSHIFT_MONGODB_DB_HOST;
@@ -21,6 +22,20 @@ var restaurants = require('./routes/restaurants');
 
 
 var app = express();
+
+var sess = {
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {}
+};
+
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1);
+  sess.cookie.secure = true;
+}
+
+app.use(session(sess));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

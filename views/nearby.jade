@@ -2,3 +2,7 @@ extends layout
 
 block content
   h1= title
+  
+  ul
+    - each restaurant in restaurants
+        div= restaurant.name
