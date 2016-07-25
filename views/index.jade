@@ -2,4 +2,13 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Grabbing your GPS location. Please wait #[span#dots ...]
+
+  form(class="hidden", action="/gps", method="post")
+    input(type="text", name="latitude")
+    input(type="text", name="longitude")
+
+  div#error
+
+  script(type='text/javascript', src='js/geo.js')
+  script(type='text/javascript', src='js/index.js')

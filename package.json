@@ -21,11 +21,12 @@
     "cookie-parser": "~1.4.3",
     "debug": "^2.2.0",
     "express": "^4.13.0",
-    "mongoose": "^4.5.4",
     "jade": "~1.11.0",
+    "jquery": "^3.1.0",
+    "mongoose": "^4.5.4",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0",
-    "passport": "^0.2.2"
+    "passport": "^0.2.2",
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "express-livereload": "0.0.24",
