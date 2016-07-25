@@ -152,30 +152,33 @@ User:
 # Routes
 Going Mobile UI first
 
-/ (home)
+**/** √ (home)
   - Welcome, searching screen or your device is not supported
 
-/gps
+**/gps** √
   - geolocate where I am~~, or default to where are you.~~
     + and save GPS
     + and save the restaurant information
 
-/nearby (receives gps from backend, or based on session)
+**/nearby** √ (receives gps from backend, or based on session)
   - display "nearby" top 5 restaurants open with sorting UI
     + user swipes left to ignore
+      **/restaurant/:placeid/ignore** √
       * pop the restaurant, add another restaurant
     + user swipes right to consider
+      **/restaurant/:placeid/consider** √
       * add restaurant to consider list (shopping cart-like)
       * pop the restaurant, add another restaurant
     + if no more restaurants nearby, then show final decision,
       screen if considering or ask for a refresh
 
-/choose
+**/choose** √
   - user chooses shopping cart and makes final decision
     + decision chosen with button
+      **/choose/:placeid** √
       * increment stats on restaurant
 
-/restaurant/:placeid
+**/restaurant**/:placeid √
   - once chosen
     + display place information
       * name, hours, phone number

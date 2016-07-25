@@ -17,6 +17,8 @@ if (MONGO_HOST) {
 }
 
 var routes = require('./routes/index');
+var restaurants = require('./routes/restaurants');
+
 
 var app = express();
 
@@ -34,6 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './public')));
 
 app.use('/', routes);
+app.use('/restaurants', restaurants);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
