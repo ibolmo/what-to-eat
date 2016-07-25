@@ -153,11 +153,11 @@ User:
 Going Mobile UI first
 
 **/** √ (home)
-  - Welcome, searching screen or your device is not supported
+  - Welcome, searching screen or your device is not supported √
 
 **/gps** √
   - geolocate where I am~~, or default to where are you.~~
-    + and save GPS
+    + and save GPS √
     + and save the restaurant information
 
 **/nearby** √ (receives gps from backend, or based on session)
