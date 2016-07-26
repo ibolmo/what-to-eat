@@ -6,7 +6,6 @@ var uri = require('urijs');
 
 var router = express.Router();
 
-
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'What to eat' });
 });

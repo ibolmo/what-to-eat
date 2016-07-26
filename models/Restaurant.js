@@ -2,6 +2,7 @@ var fs = require('fs');
 var request = require('request');
 var mongoose = require('mongoose');
 var uri = require('urijs');
+var async = require('async');
 
 var RestaurantSchema = new mongoose.Schema({
   placeid:    { type: String, index: { unique: true }},
@@ -49,15 +50,26 @@ RestaurantSchema.pre('validate', function(next){
     self.hours = place.opening_hours.weekday_text;
     self.website = place.website;
     if (self.website) self.logo = 'https://logo.clearbit.com/' + uri(place.website).domain();
-    self.images = place.photos && place.photos.map(function(record){
-      return 'https://maps.googleapis.com/maps/api/place/photo?' + [
-        'maxwidth=720',
-        'photoreference=' + record.photo_reference,
-        'key=' + app.get('GMAPS_KEY')
-      ].join('&');
-    });
+    if (place.photos){
+      var photos = place.photos.map(function(record){
+        return String(uri('https://maps.googleapis.com/maps/api/place/photo').query({
+          maxwidth: 720,
+          photoreference: record.photo_reference,
+          key: app.get('GMAPS_KEY')
+        }));
+      });
 
-    next();
+      async.map(photos, function(url, cb) {
+        return request(url, function(err, response, body){
+          cb(err, this.uri.format());
+        });
+      }, function(err, results){
+        self.images = results;
+        next();
+      });
+    } else {
+      next();
+    }
   });
 });
 
