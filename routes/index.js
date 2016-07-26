@@ -7,6 +7,7 @@ var uri = require('urijs');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
+  if (req.session.results) return res.redirect('/nearby');
   res.render('index', { title: 'What to eat' });
 });
 
@@ -71,8 +72,6 @@ router.get('/nearby', function(req, res, next) {
       return restaurant.images.length > 0;
     });
 
-    restaurants = restaurants.slice(0, 3);
-
     res.render('nearby', {
       title: 'Restaurants open nearby',
       restaurants: restaurants
@@ -91,22 +90,11 @@ router.get('/choose', function(req, res, next) {
   });
 });
 
-
-router.get('/choose/list', function(req, res,next) {
-  console.log(req.body);
-  return res.send('');
-
-  var restaurants = [];
-
-  res.render('choose', {
-    title: 'Choose a final restaurant',
-    restaurants: restaurants
+router.post('/choose', function(req, res, next) {
+  Restaurant.findOne({ placeid: req.body.selection }, function(err, restaurant){
+    if (err) return next(err);
+    res.redirect('/restaurants/' + restaurant.placeid);
   });
-});
-
-router.post('/choose/:placeid', function(req, res,next) {
-  var restaurant = { placeid: 'temporary' };
-  res.redirect('/restaurant/' + restaurant.placeid);
 });
 
 module.exports = router;

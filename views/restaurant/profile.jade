@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1= title
+  
+  #restaurant-profile
+    .title
+      img.logo.v-center(src="#{restaurant.logo}")
+      span.name=restaurant.name
+      
+    .more-info
+      p.number=restaurant.phone_number
+      
+      p.address
+        a(target="_new", href="https://www.google.com/maps/search/" + escape(restaurant.name) + ' ' + escape(restaurant.address))=restaurant.address
+      h4 Hours
+      p.hours=restaurant.hours.replace(/,/g, '\n')
+  
+    ul.images
+      - each image in restaurant.images
+        li.image(style="background-image: url(#{image})")
